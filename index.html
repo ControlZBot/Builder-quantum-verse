@@ -10,5 +10,23 @@
     <div id="root"></div>
 
     <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <script src="https://widget-js.cometchat.io/v3/cometchatwidget.js"></script>
+  <script>
+    CometChatWidget.init({
+        appId: "27777922646b3c57",
+            appRegion: "eu",
+                authKey: "bb94e9133250e56584ba10cd906c154ce531937e"
+                  }).then(() => {
+                      CometChatWidget.login({
+                            uid: "user1"
+                                });
+                                    CometChatWidget.launch({
+                                          widgetID: "default",
+                                                roundedCorners: "true",
+                                                      docked: "true",
+                                                            height: "600px",
+                                                                  width: "400px"
+                                                                      });
+                                                                        });
+                                                                        </script></body>
 </html>
