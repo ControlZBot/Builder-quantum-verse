@@ -4,65 +4,73 @@
   <title>QuantumVerse Chat</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <style>
-    body { font-family: sans-serif; padding: 1rem; }
-    #chat { max-width: 600px; margin: auto; }
-    #messages { height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 1rem; margin-bottom: 1rem; }
-    #messages div { margin-bottom: 0.5rem; }
-    input { width: 80%; padding: 0.5rem; }
-    button { padding: 0.5rem; }
+    body { font-family: sans-serif; padding: 1rem; background: #f0f0f5; }
+    #chat { max-width: 600px; margin: auto; background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    #messages { height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 1rem; margin-bottom: 1rem; background: #fafafa; border-radius: 4px; }
+    #messages div { margin-bottom: 0.5rem; background: #e8edf3; padding: 0.5rem; border-radius: 4px; }
+    input { width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; }
+    button { margin-top: 0.5rem; width: 100%; padding: 0.7rem; background: #007bff; color: white; border: none; border-radius: 4px; font-size: 1rem; }
+    button:hover { background: #0056b3; }
   </style>
 </head>
 <body>
 
-  <h2>QuantumVerse Live Chat</h2>
+  <h2 style="text-align:center;">QuantumVerse Live Chat</h2>
   <div id="chat">
     <div id="messages"></div>
-    <input type="text" id="messageInput" placeholder="Type a message..." />
+    <input type="text" id="messageInput" placeholder="Type a message..." autocomplete="off" />
     <button onclick="sendMessage()">Send</button>
   </div>
 
   <script>
-    const supabase = supabase.createClient("YOUR_SUPABASE_URL", "YOUR_ANON_KEY");
+    const supabase = supabase.createClient(
+      "https://zkwhgollfspayvvjawjy.supabase.co",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inprd2hnb2xsZnNwYXl2dmphd2p5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA2MzE3ODAsImV4cCI6MjA2NjIwNzc4MH0.Ow6SauZfq7TNfed1I9qhwUjsX-ddifly5j1a6pKknMM"
+    );
 
-    // Realtime message listener
-    supabase
-      .channel('public:messages')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'messages' }, (payload) => {
-        const msg = payload.new;
-        displayMessage(msg.user, msg.text);
-      })
-      .subscribe();
-
-    // Initial message load
+    // Load messages initially
     async function loadMessages() {
       const { data, error } = await supabase
-        .from('messages')
-        .select('*')
-        .order('created_at', { ascending: true });
+        .from("messages")
+        .select("*")
+        .order("created_at", { ascending: true });
 
       if (data) {
-        data.forEach(msg => displayMessage(msg.user, msg.text));
+        data.forEach((msg) => displayMessage(msg.user, msg.text));
       }
     }
 
-    // Display message in the chat window
+    // Display message
     function displayMessage(user, text) {
-      const div = document.createElement('div');
+      const div = document.createElement("div");
       div.textContent = `${user}: ${text}`;
-      document.getElementById('messages').appendChild(div);
+      document.getElementById("messages").appendChild(div);
     }
 
-    // Send a message
+    // Send message
     async function sendMessage() {
-      const input = document.getElementById('messageInput');
+      const input = document.getElementById("messageInput");
       const text = input.value.trim();
       if (!text) return;
 
-      await supabase.from('messages').insert([{ user: 'User1', text }]);
-      input.value = '';
+      await supabase.from("messages").insert([{ user: "User1", text }]);
+      input.value = "";
     }
 
-    // Start the chat
+    // Listen for live updates
+    supabase
+      .channel("public:messages")
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "messages" },
+        (payload) => {
+          const msg = payload.new;
+          displayMessage(msg.user, msg.text);
+        }
+      )
+      .subscribe();
+
+    // Start
     loadMessages();
   </script>
 
