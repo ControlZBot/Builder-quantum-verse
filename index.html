@@ -5,28 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hello world project</title>
   </head>
-
   <body>
-    <div id="root"></div>
+    <h1>Welcome to Quantum Verse Chat!</h1>
 
-    <script type="module" src="/src/main.tsx"></script>
-  <script src="https://widget-js.cometchat.io/v3/cometchatwidget.js"></script>
-  <script>
-    CometChatWidget.init({
+    <script src="https://widget-js.cometchat.io/v3/cometchatwidget.js"></script>
+    <script>
+      CometChatWidget.init({
         appId: "27777922646b3c57",
-            appRegion: "eu",
-                authKey: "bb94e9133250e56584ba10cd906c154ce531937e"
-                  }).then(() => {
-                      CometChatWidget.login({
-                            uid: "user1"
-                                });
-                                    CometChatWidget.launch({
-                                          widgetID: "default",
-                                                roundedCorners: "true",
-                                                      docked: "true",
-                                                            height: "600px",
-                                                                  width: "400px"
-                                                                      });
-                                                                        });
-                                                                        </script> </body>
+        appRegion: "eu",
+        authKey: "bb94e9133250e56584ba10cd906c154ce531937e"
+      }).then(() => {
+        CometChatWidget.login({ uid: "user1" });
+        CometChatWidget.launch({
+          widgetID: "default",
+          roundedCorners: "true",
+          docked: "true",
+          height: "600px",
+          width: "400px"
+        });
+      });
+    </script>
+  </body>
 </html>
