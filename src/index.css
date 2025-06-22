@@ -4,94 +4,94 @@
 
 @layer base {
   /**
-   * Tailwind CSS theme
-   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
-   * A different format will require also updating the theme in tailwind.config.ts.
-  */
+   * Retro Roblox Theme Variables
+   * Classic blue-gray theme inspired by 2006-2015 Roblox UI
+   */
   :root {
-    --background: 0 0% 100%;
+    /* Classic Blue Theme */
+    --background: 210 40% 96%;
     --foreground: 222.2 84% 4.9%;
+
+    --retro-window-bg: 214 32% 91%;
+    --retro-window-border: 215 25% 27%;
+    --retro-button-bg: 210 40% 98%;
+    --retro-button-hover: 210 40% 94%;
+    --retro-button-active: 214 32% 88%;
+
+    --retro-primary: 215 100% 50%;
+    --retro-primary-hover: 215 100% 45%;
+    --retro-danger: 0 100% 50%;
+    --retro-danger-hover: 0 100% 45%;
+    --retro-success: 120 100% 25%;
+    --retro-success-hover: 120 100% 20%;
+
+    --retro-input-bg: 240 5% 96%;
+    --retro-input-border: 240 5% 26%;
+    --retro-sidebar-bg: 213 27% 84%;
+    --retro-chat-bg: 0 0% 98%;
+    --retro-chat-alt: 210 40% 94%;
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 215 100% 50%;
     --primary-foreground: 210 40% 98%;
-
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
-
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
-
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --ring: 215 100% 50%;
+    --radius: 1px;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    /* Dark Blox Theme */
+    --background: 240 6% 10%;
     --foreground: 210 40% 98%;
+
+    --retro-window-bg: 240 5% 16%;
+    --retro-window-border: 240 5% 34%;
+    --retro-button-bg: 240 4% 16%;
+    --retro-button-hover: 240 5% 20%;
+    --retro-button-active: 240 5% 12%;
+
+    --retro-primary: 215 100% 60%;
+    --retro-primary-hover: 215 100% 55%;
+    --retro-danger: 0 100% 60%;
+    --retro-danger-hover: 0 100% 55%;
+    --retro-success: 120 100% 35%;
+    --retro-success-hover: 120 100% 30%;
+
+    --retro-input-bg: 240 5% 12%;
+    --retro-input-border: 240 5% 34%;
+    --retro-sidebar-bg: 240 5% 14%;
+    --retro-chat-bg: 240 4% 12%;
+    --retro-chat-alt: 240 5% 16%;
 
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
-
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
+    --primary: 215 100% 60%;
     --primary-foreground: 222.2 47.4% 11.2%;
-
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
-
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
-
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --ring: 215 100% 60%;
   }
 }
 
@@ -101,6 +101,118 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-retro;
+    font-size: 12px;
+    line-height: 1.2;
+    image-rendering: pixelated;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Retro scroll bars */
+  ::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--retro-window-bg));
+    border: 1px solid hsl(var(--retro-window-border));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--retro-button-bg));
+    border: 1px solid hsl(var(--retro-window-border));
+    box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.5);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--retro-button-hover));
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: hsl(var(--retro-window-bg));
+  }
+}
+
+@layer components {
+  /* Retro Window Component */
+  .retro-window {
+    @apply border-2 border-retro-gray-700 bg-retro-gray-200;
+    box-shadow: var(
+      --retro-window-shadow,
+      2px 2px 4px 0px rgba(0, 0, 0, 0.5),
+      inset 1px 1px 0px 0px rgba(255, 255, 255, 0.8)
+    );
+  }
+
+  /* Retro Button Component */
+  .retro-button {
+    @apply border border-retro-gray-700 bg-retro-gray-100 font-retro text-xs px-3 py-1;
+    box-shadow:
+      1px 1px 0px 1px rgba(0, 0, 0, 0.8),
+      inset 1px 1px 0px 0px rgba(255, 255, 255, 0.6);
+    text-shadow: none;
+  }
+
+  .retro-button:hover {
+    @apply bg-retro-gray-50;
+  }
+
+  .retro-button:active {
+    @apply bg-retro-gray-300;
+    box-shadow: inset 1px 1px 2px 0px rgba(0, 0, 0, 0.5);
+  }
+
+  .retro-button.primary {
+    @apply bg-blue-500 text-white;
+  }
+
+  .retro-button.primary:hover {
+    @apply bg-blue-600;
+  }
+
+  .retro-button.danger {
+    @apply bg-red-500 text-white;
+  }
+
+  .retro-button.danger:hover {
+    @apply bg-red-600;
+  }
+
+  .retro-button.success {
+    @apply bg-green-600 text-white;
+  }
+
+  .retro-button.success:hover {
+    @apply bg-green-700;
+  }
+
+  /* Retro Input Component */
+  .retro-input {
+    @apply border-2 border-retro-gray-700 bg-retro-gray-50 font-retro text-xs px-2 py-1;
+    box-shadow: inset 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  }
+
+  .retro-input:focus {
+    @apply outline-none ring-2 ring-blue-500;
+  }
+
+  /* Retro Panel Component */
+  .retro-panel {
+    @apply border border-retro-gray-600 bg-retro-gray-100;
+    box-shadow:
+      inset 1px 1px 0px 0px rgba(255, 255, 255, 0.5),
+      inset -1px -1px 0px 0px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Chat bubble styles */
+  .chat-bubble {
+    @apply border border-retro-gray-600 bg-retro-gray-50 p-2 mb-1;
+    box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.3);
+  }
+
+  .chat-bubble.alt {
+    @apply bg-retro-blue-50;
   }
 }
